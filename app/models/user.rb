@@ -21,4 +21,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many  :sessions, foreign_key: "owner", dependent: :destroy
+  validates :password, presence: { message: "Password can't be blank" }
+  validates :email, presence: { message: "Email can't be blank" }
 end
