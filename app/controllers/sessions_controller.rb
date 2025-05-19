@@ -108,11 +108,6 @@ class SessionsController < ApplicationController
   @restaurants = Restaurant.all.order(:restaurant_name)  
   end
 
-  private
-
-  def load_restaurants
-    @restaurants = Restaurant.all.order(:restaurant_name)
-  end
   
   def destroy
     the_id = params.fetch("path_id")
@@ -122,4 +117,11 @@ class SessionsController < ApplicationController
 
     redirect_to("/sessions", { :notice => "Session deleted successfully."} )
   end
+
+  private
+
+  def load_restaurants
+    @restaurants = Restaurant.all.order(:restaurant_name)
+  end
+
 end
