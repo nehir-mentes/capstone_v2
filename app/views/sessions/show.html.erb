@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Session #<%= @the_session.id %> details
+      <%= @the_session.title %>
     </h1>
 
     <div>
@@ -12,25 +12,17 @@
       </div>
 
       <div>
-        <a href="/delete_session/<%= @the_session.id %>">
-          Delete session
+        <%= link_to "Delete session", session_path(@the_session), method: :delete, data: { confirm: "Are you sure?" } %>
         </a>
       </div>
     </div>
 
     <dl>
       <dt>
-        Title
-      </dt>
-      <dd>
-        <%= @the_session.title %>
-      </dd>
-
-      <dt>
         Restaurant
       </dt>
       <dd>
-        <%= @the_session.restaurant_id %>
+        <%= @the_session.restaurant.restaurant_name %>
       </dd>
 
       <dt>
@@ -40,62 +32,90 @@
         <%= @the_session.owner %>
       </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_session.created_at) %> ago
-      </dd>
+<p>Please fill out the details below to get a wine recommendation:</p>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_session.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
+    <form id="message-form" action="/insert_message" method="post" onsubmit="return prepareMessage();">
+      <%= csrf_meta_tags %>
+      <input type="hidden" name="query_session_id" value="<%= @the_session.id %>">
 
-<hr>
+      <label>
+        Up to 3 dishes you're considering (appetizers & mains):<br>
+        <textarea id="dish_input" placeholder="e.g. shrimp cocktail, steak, mushroom risotto"></textarea>
+      </label>
+      <br><br>
 
+      <label>
+        Price ceiling ($):<br>
+        <input type="number" id="price_input" min="0">
+      </label>
+      <br><br>
 
-<div>
-  <div>
-    <h2>
-      Edit session
-    </h2>
+      <label>
+        Preferred wine or grape type (optional):<br>
+        <input type="text" id="grape_input" placeholder="e.g. Pinot Noir, Sauvignon Blanc">
+      </label>
+      <br><br>
 
-    <form action="/modify_session/<%= @the_session.id %>"  method="post" >
-      <div>
-        <label for="title_box">
-          Title
-        </label>
+      <label>
+        <input type="checkbox" id="abv_input"> I prefer a low-alcohol wine
+      </label>
+      <br><br>
 
-        <input type="text" id="title_box" name="query_title" value="<%= @the_session.title %>">
-      </div>
+      <!-- This is the only input actually submitted -->
+      <textarea name="query_content" id="query_content" hidden></textarea>
 
-      <div>
-        <label for="restaurant_id_box">
-          Restaurant
-        </label>
-
-        <input type="text" id="restaurant_id_box" name="query_restaurant_id" value="<%= @the_session.restaurant_id %>">
-      </div>
-
-      <div>
-        <label for="owner_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_box" name="query_owner" value="<%= @the_session.owner %>">
-      </div>
-
-      <button>
-        Update session
-      </button>
+      <button type="submit">Submit answer</button>
     </form>
-  </div>
+
+    <hr>
+
+<% latest_ai_message = @the_session.messages.where(role: "assistant").order(:created_at).last %>
+
+
+<% if latest_ai_message.present? %>
+  <h2>Wine pairing</h2>
+  <p><%= latest_ai_message.content %></p>
+
+  <h3>Follow-up Question or Comment</h3>
+  <form action="/insert_message" method="post">
+    <%= csrf_meta_tags %>
+    <input type="hidden" name="query_session_id" value="<%= @the_session.id %>">
+    <textarea name="query_content" placeholder="Ask a follow-up..."></textarea><br>
+    <button type="submit">Submit follow-up</button>
+  </form>
+<% else %>
+  <h2>Wine pairing</h2>
+  <p><em>No response yet. Submit a dish selection above to get started.</em></p>
+<% end %>
 </div>
 
-<hr>
+<script>
+  function prepareMessage() {
+    const dishes = document.getElementById("dish_input").value.trim();
+    const price = document.getElementById("price_input").value.trim();
+    const grape = document.getElementById("grape_input").value.trim();
+    const abv = document.getElementById("abv_input").checked;
+
+    let compiledMessage = "";
+
+    if (dishes) {
+      compiledMessage += "Dishes: " + dishes + ".\n";
+    }
+
+    if (price) {
+      compiledMessage += "Price ceiling: $" + price + ".\n";
+    }
+
+    if (grape) {
+      compiledMessage += "Preferred wine or grape: " + grape + ".\n";
+    }
+
+    if (abv) {
+      compiledMessage += "I'm looking for a low-alcohol wine.\n";
+    }
+
+    document.getElementById("query_content").value = compiledMessage.trim();
+
+    return true;
+  }
+</script>
