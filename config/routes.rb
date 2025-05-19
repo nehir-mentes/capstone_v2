@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # Routes for the Restaurant resource:
 
+  root "sessions#index"
+
   # CREATE
   post("/insert_restaurant", { :controller => "restaurants", :action => "create" })
           
@@ -58,6 +60,5 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-root "sessions#index"
-  
+
 end
