@@ -1,8 +1,8 @@
 /* Transparent navbar with readable text */
 .navbar {
-  background-color: rgba(255, 255, 255, 0.3) !important; /* slightly more transparent */
+  background-color: rgba(255, 255, 255, 0.3) !important;
   backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important; /* for Safari */
+  -webkit-backdrop-filter: blur(8px) !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -21,14 +21,16 @@
   text-decoration: underline;
 }
 
-
 /* Forms and inputs over background */
 form {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   max-width: 600px;
   margin: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 form label, form input, form select {
@@ -37,14 +39,19 @@ form label, form input, form select {
 
 /* Table styling over image background */
 table {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-collapse: collapse;
   width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
   padding: 0.75rem;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(200, 200, 200, 0.5);
   color: #000;
 }
 
@@ -52,7 +59,9 @@ thead {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
+/* Header visibility on top of image */
 h1, h2, h3 {
-  color: #000; /* force dark text */
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* light outline for contrast */
+  color: #000;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+  text-align: center;
 }
