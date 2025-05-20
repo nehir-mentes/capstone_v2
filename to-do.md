@@ -2,4 +2,4 @@
 
 1- Navbar
 2- Add more restaurants and menus
-3- 
+3- Fix the background issue
