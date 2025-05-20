@@ -1,5 +1,4 @@
 # Remaining to-do's
 
-1- Navbar
+1- Rake sample_data
 2- Add more restaurants and menus
-3- Fix the background issue
