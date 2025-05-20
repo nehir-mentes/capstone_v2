@@ -12,9 +12,12 @@
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
+<div class="form-actions">
+  <button type="submit"
+          class="btn btn-primary w-10">
+    Log in
+  </button>
+</div>
 <% end %>
 
 <div class="d-flex flex-column align-items-center mt-4">
