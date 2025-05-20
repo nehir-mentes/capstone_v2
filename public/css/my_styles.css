@@ -30,3 +30,11 @@
 .table-bordered-centered tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+body {
+  background-image: url('public/background_image.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* optional: keeps it in place while scrolling */
+  background-position: center center;
+}
