@@ -1,13 +1,26 @@
 /* Transparent navbar with readable text */
 .navbar {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #000;
-  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.3) !important; /* slightly more transparent */
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important; /* for Safari */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.navbar a, .navbar-brand {
-  color: #000 !important;
+/* Ensure links inside navbar are visible */
+.navbar-brand,
+.navbar-nav .nav-link,
+.navbar a {
+  color: #222 !important;
+  font-weight: bold;
 }
+
+/* Optional: Change link color on hover for better feedback */
+.navbar-nav .nav-link:hover {
+  color: #000 !important;
+  text-decoration: underline;
+}
+
 
 /* Forms and inputs over background */
 form {
@@ -37,4 +50,9 @@ th, td {
 
 thead {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+h1, h2, h3 {
+  color: #000; /* force dark text */
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* light outline for contrast */
 }
