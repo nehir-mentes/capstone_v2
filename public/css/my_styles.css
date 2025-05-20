@@ -32,9 +32,9 @@
 }
 
 body {
-  background-image: url('public/background_image.jpg');
+  background-image: url('/assets/background_image.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* optional: keeps it in place while scrolling */
+  background-attachment: fixed;
   background-position: center center;
 }
