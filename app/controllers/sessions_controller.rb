@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def index
-    matching_sessions = Session.all
+    matching_sessions = Session.where(owner: current_user.id)
 
     @list_of_sessions = matching_sessions.order({ :created_at => :desc })
 
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   def create
     the_session = Session.new
     the_session.title = params.fetch("query_title")
-    the_session.owner = params.fetch("query_owner")
+    the_session.owner = current_user.id
     
     restaurant_name = params.fetch("query_restaurant")
     restaurant = Restaurant.find_by(restaurant_name: restaurant_name)
