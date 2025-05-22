@@ -5,10 +5,14 @@ task({ :sample_data => :environment }) do
     Restaurant.destroy_all
     Message.destroy_all
     Session.destroy_all
+   
+    User.destroy_all
 
-    User.find_or_create_by!(email: "admin@example.com") do |user|
-      user.password = "securepassword"
-      user.admin = true
+    admin = User.find_or_initialize_by(email: "nehirmen.98@gmail.com")
+    admin.password = "Bar0l0$Red"
+    admin.admin = true
+    admin.save!
+
     end
 
     names = ["Alice", "Bob", "Carol"]
