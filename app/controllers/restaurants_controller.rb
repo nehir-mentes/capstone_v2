@@ -1,4 +1,7 @@
 class RestaurantsController < ApplicationController
+  before_action :authenticate_user!  # Ensure user is signed in
+  before_action :authenticate_admin! # Ensure user is admin
+
   def index
     matching_restaurants = Restaurant.all
 
