@@ -1,4 +1,4 @@
-<div>
+<div class="text-center">
   <div>
     <h1>
       <%= @the_session.title %>
@@ -73,20 +73,25 @@
 
 
 <% if latest_ai_message.present? %>
-  <h2>Wine pairing</h2>
-  <p><%= latest_ai_message.content %></p>
+  <div class="glass-box text-center">
+    <h2>Wine pairing</h2>
+    <p><%= latest_ai_message.content %></p>
+  </div>
 
-  <h3>Follow-up Question or Comment</h3>
-  <form action="/insert_message" method="post">
+  <h3 class="text-center">Follow-up Question or Comment</h3>
+  <form class="glass-box" action="/insert_message" method="post">
     <%= csrf_meta_tags %>
     <input type="hidden" name="query_session_id" value="<%= @the_session.id %>">
     <textarea name="query_content" placeholder="Ask a follow-up..."></textarea><br>
     <button type="submit">Submit follow-up</button>
   </form>
 <% else %>
-  <h2>Wine pairing</h2>
-  <p><em>No response yet. Submit a dish selection above to get started.</em></p>
+  <div class="glass-box text-center">
+    <h2>Wine pairing</h2>
+    <p><em>No response yet. Submit a dish selection above to get started.</em></p>
+  </div>
 <% end %>
+
 </div>
 
 <script>
