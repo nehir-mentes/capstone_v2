@@ -2,10 +2,13 @@ desc "Fill the database tables with some sample data"
 task({ :sample_data => :environment }) do
 
     if Rails.env.development?
-    User.destroy_all
     Restaurant.destroy_all
     Message.destroy_all
     Session.destroy_all
+
+    User.find_or_create_by!(email: "admin@example.com") do |user|
+      user.password = "securepassword"
+      user.admin = true
     end
 
     names = ["Alice", "Bob", "Carol"]
