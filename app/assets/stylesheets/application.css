@@ -19,3 +19,15 @@
  *= require bootstrap_manual
  *= require custom
  */
+
+
+ .required abbr,
+label.required abbr,
+label.required span {
+  display: none !important;
+}
+
+.form-inputs label {
+  margin-bottom: 0.5rem;
+  display: block;
+}
