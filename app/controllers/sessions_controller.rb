@@ -92,7 +92,9 @@ class SessionsController < ApplicationController
       •	Premium ($50+): Recommend age-worthy bottles or iconic producers when food is complex, celebratory, or rare. Choose when wine takes center stage.
       ________________________________________
       7. Wine Menu
-      Pick your recommended wine pairing strictly from the list of wines below, each with a price listed numerically next to it. If the user input has a maximum price, make sure the price of the wine you pick does not exceed that maximum price. Here is your wine list:#{restaurant.wine_menu}"
+      Pick your recommended wine pairing very strictly from the list of wines below, each with a price listed numerically next to it. If the user input has a maximum price, make sure the price of the wine you pick does not exceed that maximum price. Always assume that the numerical next to the wine name is its bottle price unless a different size is specified in brackets. For example, Prosecco Giuliana Italy NV 14(5 oz), 56(bottle) means 5 oz is $14 and bottle is $56. Remember that the user will always give you the maximum price per bottle which you should never exceed.
+      
+          Here is your wine list:#{restaurant.wine_menu}"
 
       system_message.save
       
