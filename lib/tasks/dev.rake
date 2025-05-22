@@ -4,6 +4,8 @@ task({ :sample_data => :environment }) do
     if Rails.env.development?
     User.destroy_all
     Restaurant.destroy_all
+    Message.destroy_all
+    Session.destroy_all
     end
 
     names = ["Alice", "Bob", "Carol"]
