@@ -9,7 +9,7 @@ task({ :sample_data => :environment }) do
     User.destroy_all
 
     admin = User.find_or_initialize_by(email: "nehirmen.98@gmail.com")
-    admin.password = "Bar0l0$Red"
+    admin.password = "Bar0l0Rred"
     admin.admin = true
     admin.save!
 
