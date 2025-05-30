@@ -5,10 +5,10 @@ services:
     plan: free # make sure to set this to free or you'll get billed $$$
     buildCommand: "./bin/render-build.sh" # we already created these two files for you
     startCommand: "./bin/render-start.sh"
-    envVars: # this section sets some ENV variables needed by Render for deployment
+    envVars:
       - key: SECRET_KEY_BASE
         generateValue: true
       - key: DATABASE_URL
-        value: ""
+        value: "postgresql://blj3ge:xau_SJTSWMirlv58wUuQMp3Ha8JeuSSZq5jo2@us-east-1.sql.xata.sh/fork-and-vine:main?sslmode=require"
       - key: WEB_CONCURRENCY
         value: "2"
