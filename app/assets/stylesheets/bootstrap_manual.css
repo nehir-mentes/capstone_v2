@@ -32,7 +32,7 @@
 }
 
 body {
-  background-image: url('/assets/background_image.jpg');
+  background-image: url('/images/background_image.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
