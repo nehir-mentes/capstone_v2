@@ -30,6 +30,9 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
+# Move Rails outside of development
+gem "rails_db"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -94,7 +97,6 @@ group :development do
   gem "dev_toolbar"
   gem "draft_generators"
   gem "pry-rails"
-  gem "rails_db"
   gem "rails-erd"
   gem "rufo"
   gem "specs_to_readme"
