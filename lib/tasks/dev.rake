@@ -1,7 +1,7 @@
 desc "Fill the database tables with some sample data"
 task({ :sample_data => :environment }) do
 
-    if Rails.env.development?
+    if Rails.env.development? || Rails.env.production?
     Restaurant.destroy_all
     Message.destroy_all
     Session.destroy_all
